@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="topper">
+        <div></div>
+        <h1 class="pageHeading">My Library</h1>
+        <div id="library-count">
+            <p class="count-p">Books in Library: </p>
+            <p class="count-p" id="total-books"></p>
+            <p class="count-p">Books Read: </p>
+            <p class="count-p" id="total-read"></p>
+        </div>
+    </div>
+    <button type="button" onclick="openForm()" class="openForm">Add Book</button>
+    <div id="bookGrid">
+        
+
+    </div>
+    
+    <div id="addBook">
+            <form id="bookForm">
+            <label for="title">Book Title</label>
+            <input type="text" id="title" required>
+            <label for="author">Author of Book</label>
+            <input type="text" id="author" required>
+            <label for="pageCount">Page Count</label>
+            <input type="number" id="pageCount">
+            <label for="read">Have you read this book?</label>
+            <input type="checkbox" id="read">
+            <div class="buttons">
+                <button class="formButtons" type="button" id="submit" onclick="addBook()">Submit</button>
+                <button class="formButtons" type="button" id="reset" onclick="resetForm()">Clear</button>
+                <button class="formButtons" type="button" onclick="closeForm()">Close Form</button>
+            </div>
+        </form>
+    </div>
+    <script src="script-2.js"></script>
+</body>
+</html>
