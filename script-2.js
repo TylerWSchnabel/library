@@ -5,13 +5,15 @@ var formPageCount = document.getElementById('pageCount');
 var formRead = document.getElementById('read');
 
 
-function Book(title, author, pageCount, read) {
-    this.title = title;
-    this.author = author;
-    this.pageCount = pageCount;
-    this.read = read;
-    this.info = function(){
-        return this.title + " by " + this.author + ", " + this.pageCount + " pages. Have I read it? " + this.read;
+class Book{
+    constructor (title, author, pageCount, read){
+        this.title = title;
+        this.author = author;
+        this.pageCount = pageCount;
+        this.read = read;
+    }
+    info(){
+        return (this.title + " by " + this.author + ", " + this.pageCount + " pages. Have I read it? " + this.read);
     };
 }
 
@@ -31,7 +33,7 @@ function resetForm() {
 }
 
 function addBook() {
-    const newBook = new Book(formTitle.value, formAuthor.value, formPageCount.value, formRead.checked);
+    let newBook = new Book(formTitle.value, formAuthor.value, formPageCount.value, formRead.checked);
     library.push(newBook);
     resetForm();
     closeForm();
