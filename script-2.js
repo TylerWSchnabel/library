@@ -1,8 +1,28 @@
 let library = [];
+
+if(!localStorage.getItem('library')) {
+    library = [];
+    
+  } else {
+    library = JSON.parse(localStorage.library);
+  }
+  
+
 var formTitle = document.getElementById('title');
 var formAuthor = document.getElementById('author');
 var formPageCount = document.getElementById('pageCount');
 var formRead = document.getElementById('read');
+
+formTitle.addEventListener('input', () => {
+    formTitle.setCustomValidity('');
+    formTitle.checkValidity();
+  });
+
+formTitle.addEventListener('invalid', () =>{
+    if (formTitle.value === ''){
+        formTitle.setCustomValidity('Plaese enter the name of the Book.')
+    }
+})
 
 
 class Book{
@@ -35,8 +55,9 @@ function resetForm() {
 function addBook() {
     let newBook = new Book(formTitle.value, formAuthor.value, formPageCount.value, formRead.checked);
     library.push(newBook);
-    resetForm();
-    closeForm();
+    localStorage.library = JSON.stringify(library);
+    //resetForm();
+    //closeForm();
     createNewCard();
 }
 
@@ -53,7 +74,7 @@ function totalRead(){
 }
 
 function createNewCard() {
-    resetForm();
+    //resetForm();
     let grid = document.getElementById('bookGrid');
     totalRead();
     document.getElementById('total-books').textContent = library.length;
@@ -103,11 +124,13 @@ function createNewCard() {
                         card.style.transitionDuration = ".4s";
                         library[i].read = true;
                         totalRead();
+                        localStorage.library = JSON.stringify(library);
                     } else {
                         card.style.backgroundColor = "aquamarine";
                         card.style.transitionDuration = ".4s";
                         library[i].read = false;
                         totalRead();
+                        localStorage.library = JSON.stringify(library);
                     }
                 });
             let remove = document.createElement('button');
@@ -117,6 +140,7 @@ function createNewCard() {
                 library.splice(i , 1);
                 grid.textContent = "";
                 createNewCard();
+                localStorage.library = JSON.stringify(library);
             };
         card.appendChild(bookHead);
         card.appendChild(bookTitle);
